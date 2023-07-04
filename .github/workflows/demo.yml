@@ -1,15 +1,16 @@
-name: Upload Website
-
+name: GitHub Actions Demo
+run-name: ${{ github.actor }} is testing out GitHub Actions
+#on: [push]
 on:
   push:
     branches:
     - main
 
-jobs:
-  deploy:
+jobs:               #jobs: is used to define one or more jobs that can run independently or sequentially in a workflow                     
+  deploy:           #deploy: is used to specify the deployment configuration for your workflow. It is used to deploy your application to a server or a cloud service.
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v2
     - uses: jakejarvis/s3-sync-action@master
       with:
         args: --acl public-read --follow-symlinks --delete --exclude '.git*/*'
