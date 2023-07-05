@@ -13,8 +13,8 @@ jobs:               #jobs: is used to define one or more jobs that can run indep
     - uses: actions/checkout@v2
     - uses: jakejarvis/s3-sync-action@master
       with:
-        args: --acl public-read --follow-symlinks --delete --exclude '.git*/*'  #acl - Access control list
-      env:
+        args: --acl public-read --follow-symlinks --delete --exclude '.git*/*'  #acl - Access control list  #--follow-symlinks  fixes some weird symbolic link problems that may come up
+      env:                                                                      #--delete permanently deletes files in the S3 bucket that are not present in the latest version of your repository/build.
         AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
